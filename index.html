@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- LINK CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- LINK JS -->
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+
+    <h1>Codificador</h1>
+
+    <form id="form">                                                                                 
+        <h2>Selecione o seu metodo de codificação: </h2>
+        <section id="method-container">
+            <select name="method" id="method-option">                                                
+                <option disabled="" selected>Escolha sua opção</option>     
+                <option id="base64-method">Base 64</option>                                          
+                <option id="caesar-cipher-method">Cifra de Cesar</option>                            
+            </select>
+
+            <input type="number" value="1" id="hidden-input" style="display: none;">   
+        </section>
+        
+        <section>
+            <input type="radio" name="encode" id="encoder">                                          
+            <label for="encode">codificar</label>
+            <input type="radio" name="encode" id="decoder">                                          
+            <label for="encode">decodificar</label>
+        </section>
+
+
+        <h2>Entrada e Saida</h2>
+        <section>
+            <textarea id="user-input" placeholder="Escreva o que você deseja"></textarea>                                            
+            <textarea id="code-output" placeholder="Aqui vai ser o resultado"></textarea>                                          
+        </section>
+
+        <button id="button">Code Here</button>
+    </form>
+</body>
+</html>
