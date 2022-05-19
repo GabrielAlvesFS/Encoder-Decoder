@@ -1,5 +1,5 @@
 let tipo = undefined
-let incremento = 1
+let incremento = 0
 let metodo = undefined
 
 // Function pra pegar entrada do usuário
@@ -39,15 +39,34 @@ function encodeType(){
     }
 
     //armazena o novo valor do input de incremento
-    caesarInput.addEventListener('click', function(){
+    caesarInput.addEventListener('change', function(){
         incremento = caesarInput.value
+        incremento = Number(incremento)
         console.log(`esse é o tipo: ${tipo}\nesse é o i: ${incremento}`)
     })
 }
 encodeType()
 
+//function encode caesar-cipher
+function caesarCipher(userInput, increment){
+    let input = ''
+
+    for (i = 0; i <= userInput.length; i++) {
+        let caesar = userInput.charCodeAt(i)
+        if (userInput.match(/[a-z]/i)) {
+            if (caesar >= 97 && caesar <=122) {
+                caesar = (caesar - 97 + increment) % 26 + 97
+            } else if (caesar >= 65 && caesar <=90){
+                caesar = (caesar - 65 + increment) % 26 + 65
+            }
+            input = input + String.fromCharCode(caesar)
+        }
+    }
+    return input
+}
+
 //Encode - function que posso retornar o codigo codificado em methodSelected - param= base 64 ou cifra de cesar com incremento
-function encode(type, increment, userInput) {
+function encode(type, increment, userInput) { 
     if (type === 'base64') {
         userInput = btoa(userInput)
         answerOutput(userInput)
@@ -55,12 +74,15 @@ function encode(type, increment, userInput) {
         console.log('Aqui codifica pra base 64')
     } else if (type === 'caesar') {
         //verificar qual o incrimento e trabalhar em cima disso
-        alert('Codificação da Cifra de Cesar em Construção')
+        userInput = caesarCipher(userInput, increment)
+        answerOutput(userInput)
+        
     }
 }
 
 //decode
 function decode(type, increment, userInput){
+    increment = 26 - increment
     if (type === 'base64') {
         userInput = atob(userInput)
         answerOutput(userInput)
@@ -68,7 +90,8 @@ function decode(type, increment, userInput){
 
     } else if (type === 'caesar') {
         //verificar qual o incrimento e trabalhar em cima disso
-        alert('Decodificação da Cifra de Cesar em Construção')
+        userInput = caesarCipher(userInput, increment)
+        answerOutput(userInput)
     }
 }
 
