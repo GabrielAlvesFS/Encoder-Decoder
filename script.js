@@ -9,7 +9,11 @@ userInput = function(){
     return input
 }
 
-//function pra escrever o resultado da codificação no output textarea
+/**
+ * function pra escrever o resultado da codificação no output textarea
+ * @param {string} answerOutput 
+ * @returns {string} 
+ */
 function answerOutput(answerOutput) {
     let output = document.querySelector('#code-output')
     output = output.value = `${answerOutput}`
@@ -29,12 +33,11 @@ function encodeType(){
             //se for cesar mostra a seleção de incrimento
             caesarInput.style.display = 'inline'
             tipo = 'caesar'
-            console.log(`esse é o tipo: ${tipo}\nesse é o i: ${incremento}`)
-
+        
         } else if (base64.selected === true) {
             caesarInput.style.display = 'none'
             tipo = 'base64'
-            console.log(`esse é o tipo: ${tipo}`)
+
         }
     }
 
@@ -42,12 +45,17 @@ function encodeType(){
     caesarInput.addEventListener('change', function(){
         incremento = caesarInput.value
         incremento = Number(incremento)
-        console.log(`esse é o tipo: ${tipo}\nesse é o i: ${incremento}`)
+
     })
 }
 encodeType()
 
-//function encode caesar-cipher
+/**
+ * function caesar-cipher
+ * @param {string} userInput 
+ * @param {number} increment 
+ * @returns {string}
+ */
 function caesarCipher(userInput, increment){
     let input = ''
 
@@ -65,7 +73,12 @@ function caesarCipher(userInput, increment){
     return input
 }
 
-//Encode - function que posso retornar o codigo codificado em methodSelected - param= base 64 ou cifra de cesar com incremento
+/**
+ * Encode - function que posso retornar o codigo codificado em methodSelected - param= base 64 ou cifra de cesar com incremento
+ * @param {string} type 
+ * @param {number} increment 
+ * @param {string} userInput 
+ */
 function encode(type, increment, userInput) { 
     if (type === 'base64') {
         userInput = btoa(userInput)
@@ -80,7 +93,12 @@ function encode(type, increment, userInput) {
     }
 }
 
-//decode
+/**
+ * decode
+ * @param {string} type 
+ * @param {number} increment 
+ * @param {string} userInput 
+ */
 function decode(type, increment, userInput){
     increment = 26 - increment
     if (type === 'base64') {
@@ -110,9 +128,8 @@ function methodSelected(){
 
     } else if (decoder.checked){
         metodo = 'decode'
-        decode(tipo, incremento, userInput())
         //chamar function decode 
-
+        decode(tipo, incremento, userInput())
     }
 }
 
@@ -125,22 +142,10 @@ function verifyEmptyInputs(){
     }
 }
 
-
 const form = document.forms['form']
 
 form.addEventListener('submit', function(event){
     event.preventDefault();
     methodSelected()
     verifyEmptyInputs()
-
-    // if (metodo == 'encode' && tipo == 'base64') {
-    //     console.log('Usuário quer codificar, e quer codificar em Base 64, DEVE RETORNAR JA O CODIGO CODIFICADO')
-
-    // } else if(metodo == 'encode' && tipo == 'caesar'){
-    //     console.log('Usuário quer codificar, e quer codificar em Cifra de cesar, DEVE RETORNAR JA O CODIGO CODIFICADO')
-
-    // } 
-
 })
-
-console.log(form)
