@@ -104,7 +104,6 @@ function decode(type, increment, userInput){
     if (type === 'base64') {
         userInput = atob(userInput)
         answerOutput(userInput)
-        console.log('Aqui decodifica pra base 64')
 
     } else if (type === 'caesar') {
         //verificar qual o incrimento e trabalhar em cima disso
