@@ -116,7 +116,8 @@ function decode(type, increment, userInput){
 // function que verifica se o usuário quer codificar ou decodificar
 function methodSelected(){
     const encoder = document.querySelector('#encoder')
-    const decoder = document.querySelector('#decoder')    
+    const decoder = document.querySelector('#decoder') 
+    const button = document.querySelector('#button')   
 
     //se for pra codificar faz isso, senao se decodifica, senao deve retornar que o campo ta não foi selecionado
     if (encoder.checked){
@@ -140,6 +141,24 @@ function verifyEmptyInputs(){
         alert(`--- Marque alguma opção! ---\nCodificar ou Decodificar`)
     }
 }
+
+//function que muda a mensagem do button
+function changeText(){
+    const encoder = document.querySelector('#encoder')
+    const decoder = document.querySelector('#decoder') 
+    const button = document.querySelector('#button')
+    
+    encoder.addEventListener('click', function(){
+        button.innerText = 'CODIFICAR'
+    })
+
+    decoder.addEventListener('click', function(){
+        button.innerText = 'DECODIFICAR'
+    })
+    
+}
+
+changeText()
 
 const form = document.forms['form']
 
